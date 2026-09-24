@@ -2,13 +2,28 @@
 * fil: style.css
 **/
 
+/*jeg tilføjer flere fisk med hjælp fra copilot*/
+
+@import url('https://fonts.googleapis.com/css2?family=Commissioner:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&display=swap');
+
+
+
 /* farvepalette */
 :root {
-    --vand: rgb(194, 222, 242);
+    --lyseblaa:             #c2def2;
+    --daempet_blaa_groen:   #409cb9;
+    --moerke_blaa:          #014276;
+    --lysegraa:             #d9d9d9;
+    --knækket_hvid:         #F5F5F0;
+    --moerke_graa:          #2d2d2d;
+    --rettelses_markoer:    #e0569d;
+    --lys_fersken:          #fcd1a4;
+    --lys_fersken2:         #fcd183;
 }
 
 body {
-    background-color: var(--vand);
+    background-color: var(--lyseblaa);
 }
 
 p {
@@ -16,21 +31,76 @@ p {
 }
 
 /* CSS-animation af Jitter-kassen */
-
-
+/*Background img https://pixabay.com/illustrations/whale-ocean-sea-nature-mammal-1696051/*/
+body {
+    background-image: url("../billeder/pixabay_whale_backsplash.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* gør baggrunden rolig */
+}
 #jitter-container {
     animation: flyv-over-vinduet 5s linear forwards;
 }
 
-@keyframes flyv-over-vinduet {
-    from {
-        transform: translate(-120vw);
-    }
+#jitter-container {
+    width: 200px;   /* fiskens bredde */
+    height: 200px;  /* fiskens højde */
+    margin-bottom: 150px;
+    animation: flyv-over-vinduet 12s linear infinite;
+}
 
-    to {
-        transform: translate(120vw);
+/*mekanismen der får fiske til at svømme hen over skærmen
+from: betyder at fisken starter x-vw view-port til venstre, så den starter udenfor skærmen
+to: betyder at fisken starter x-vw view-port til højre , så den svømmer helt ud af sækrmen på højre side
+vw= view-prt-width (bredde) 1vw=1% af skærmens bredde
+*/
+@keyframes flyv-over-vinduet {
+    0% {
+        transform: translateX(-120vw); /* starter langt ude til venstre */
     }
-    
+    100% {
+        transform: translateX(120vw); /* slutter langt ude til højre */
+    }
+}
+
+/*skjuler overflowet, midlertidlig løsning*/
+body {
+    overflow-x: hidden;
 }
 
 
+.fisk {
+    width: 200px;
+    height: 200px;
+    position: fixed;
+    animation: flyv-over-vinduet 12s linear infinite;
+}
+
+
+button {
+    padding: 10px 30px;
+    font-size: 1rem;
+    border: 1px;
+    background:var(--transparent);
+    backdrop-filter: blur(8px);
+    color: var(--lyseblaa);
+    cursor: pointer;
+}
+
+button:hover {
+    transform: translateY(-1px); /*flytter elementet 1 pixel op ad vertikalt i forhold til dens absolute placering på skærmen*/
+}
+
+button:hover {
+    box-shadow: 0 0 12px var(--lyseblaa);
+}
+.title { /*.title fordi at definere at den kun styler elementer der har class="titel"*/
+    font-weight: 70;
+    font-family: 'Nunito Sans', sans-serif;    font-size: 2.5rem;
+    color: var(--knækket_hvid);
+    letter-spacing: 2px;
+}
+.knapper {
+    margin-top: 120px; /* justér tallet */
+}
